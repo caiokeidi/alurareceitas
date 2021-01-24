@@ -2,6 +2,7 @@
 from django.shortcuts import render, get_object_or_404, get_list_or_404
 from django.http import HttpResponseNotFound
 from .models import Receita
+from django.contrib.auth.models import User
 
 def index(request):
 
@@ -15,8 +16,9 @@ def index(request):
 
 def receita(request, receita_id):
     receita = get_object_or_404(Receita, pk=receita_id)    
+    user_id = get_object_or_404(User, pk = request.user.id)
 
-    if(receita.publicada == False):
+    if(receita.publicada == False and receita.pessoa != user_id):
         return HttpResponseNotFound('Página não encontrada')
     
 

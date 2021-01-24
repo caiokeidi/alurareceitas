@@ -26,11 +26,8 @@
                 <div class="contact-form-area">
                     <form action="{% url 'cadastro' %}" method="POST">
 
-                    {% if err %}
-                        {% for aviso in erros %}
-                            <p>{{ aviso }}</p>
-                        {% endfor %}
-                    {% endif %}
+
+                    {% include 'partials/_alerta.html' %}
 
                     {% csrf_token %}
                         <div class="row">
