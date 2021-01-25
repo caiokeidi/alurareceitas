@@ -122,6 +122,15 @@ def cria_receita(request):
         return render(request, 'usuarios/cria_receita.html')
 
 
+def deleta_receita(request, receita_id):
+    receita = get_object_or_404(Receita, pk=receita_id)
+    receita.delete()
+
+    messages.success(request, 'Post apagado com sucesso')
+    return redirect(dashboard)
+
+
+
 def senhas_nao_iguais(senha, senha2):
     return senha != senha2
 
