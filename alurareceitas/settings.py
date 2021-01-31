@@ -2,6 +2,7 @@
 
 from pathlib import Path, os
 from dotenv import load_dotenv
+import sys
 
 load_dotenv()
 
@@ -73,7 +74,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'alura_receita',
         'USER': 'postgres',
-        'PASSWORD' : '8411mogi',
+        'PASSWORD' : str(os.getenv('PASSWORD_POSTGRESQL')),
         'HOST': 'localhost'
     }
 }
@@ -128,3 +129,7 @@ MESSAGE_TAGS = {
     messages.ERROR: 'danger',
     messages.SUCCESS:'success'
 }
+
+#APPS
+PROJECT_ROOT = os.path.dirname(__file__)
+sys.path.insert(0, os.path.join(PROJECT_ROOT, '../apps'))
